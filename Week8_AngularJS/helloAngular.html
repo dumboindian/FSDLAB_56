@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="helloApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Hello World - Week 8</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+        }
+        .demo-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .output-box {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #2196f3;
+        }
+        .info-box {
+            background: #fff3cd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #ffc107;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AngularJS Hello World</h1>
+        <p style="text-align: center; color: #666;">Week 8: AngularJS Fundamentals</p>
+
+        <!-- Section 1: ng-app and ng-model -->
+        <div class="demo-section">
+            <h2>1. Two-Way Data Binding (ng-model)</h2>
+            <p>Type your name below:</p>
+            <input type="text" ng-model="name" placeholder="Enter your name">
+            <div class="output-box">
+                <p><strong>Hello, {{name || 'Guest'}}!</strong></p>
+                <p>You typed: <em>{{name}}</em></p>
+            </div>
+            <div class="info-box">
+                <strong>ng-model:</strong> Creates two-way data binding between input and model
+            </div>
+        </div>
+
+        <!-- Section 2: ng-init -->
+        <div class="demo-section" ng-init="course='AngularJS'; week=8; students=5">
+            <h2>2. Initialization (ng-init)</h2>
+            <div class="output-box">
+                <p><strong>Course:</strong> {{course}}</p>
+                <p><strong>Week:</strong> {{week}}</p>
+                <p><strong>Students:</strong> {{students}}</p>
+            </div>
+            <div class="info-box">
+                <strong>ng-init:</strong> Initializes application data
+            </div>
+        </div>
+
+        <!-- Section 3: Expressions -->
+        <div class="demo-section">
+            <h2>3. AngularJS Expressions</h2>
+            <div class="output-box">
+                <p><strong>Simple Math:</strong> 10 + 20 = {{10 + 20}}</p>
+                <p><strong>String Concat:</strong> {{"Hello" + " " + "AngularJS"}}</p>
+                <p><strong>Multiplication:</strong> 5 × 7 = {{5 * 7}}</p>
+                <p><strong>Boolean:</strong> {{true && false}}</p>
+            </div>
+            <div class="info-box">
+                <strong>Expressions:</strong> Written inside {{ }} to evaluate and display data
+            </div>
+        </div>
+
+        <!-- Section 4: ng-bind -->
+        <div class="demo-section" ng-init="message='This is ng-bind example'">
+            <h2>4. ng-bind Directive</h2>
+            <input type="text" ng-model="message">
+            <div class="output-box">
+                <p><strong>Using {{}}:</strong> {{message}}</p>
+                <p><strong>Using ng-bind:</strong> <span ng-bind="message"></span></p>
+            </div>
+            <div class="info-box">
+                <strong>ng-bind:</strong> Alternative to {{}}, prevents flashing of uncompiled content
+            </div>
+        </div>
+
+        <!-- Section 5: ng-repeat (Simple) -->
+        <div class="demo-section" ng-init="colors=['Red', 'Green', 'Blue', 'Yellow', 'Purple']">
+            <h2>5. Repeating Elements (ng-repeat)</h2>
+            <ul>
+                <li ng-repeat="color in colors">{{color}}</li>
+            </ul>
+            <div class="info-box">
+                <strong>ng-repeat:</strong> Loops through array and creates elements
+            </div>
+        </div>
+
+        <!-- Section 6: ng-show and ng-hide -->
+        <div class="demo-section" ng-init="showMessage=true">
+            <h2>6. Show/Hide Elements</h2>
+            <button ng-click="showMessage = !showMessage">Toggle Message</button>
+            <div class="output-box" ng-show="showMessage">
+                <p>This message is visible when showMessage is true</p>
+            </div>
+            <div class="output-box" ng-hide="showMessage">
+                <p>This message is visible when showMessage is false</p>
+            </div>
+            <div class="info-box">
+                <strong>ng-show/ng-hide:</strong> Conditionally show or hide elements
+            </div>
+        </div>
+
+        <!-- Section 7: ng-if -->
+        <div class="demo-section" ng-init="age=20">
+            <h2>7. Conditional Rendering (ng-if)</h2>
+            <p>Enter your age:</p>
+            <input type="number" ng-model="age">
+            <div class="output-box" ng-if="age >= 18">
+                <p style="color: green;">✓ You are eligible (18+)</p>
+            </div>
+            <div class="output-box" ng-if="age < 18">
+                <p style="color: red;">✗ You are not eligible (under 18)</p>
+            </div>
+            <div class="info-box">
+                <strong>ng-if:</strong> Adds or removes elements from DOM based on condition
+            </div>
+        </div>
+
+        <!-- Section 8: ng-class -->
+        <div class="demo-section" ng-init="isActive=true">
+            <h2>8. Dynamic Classes (ng-class)</h2>
+            <button ng-click="isActive = !isActive">Toggle Style</button>
+            <div class="output-box" ng-class="{'highlight': isActive}">
+                <p>This box changes style based on isActive value</p>
+                <p><strong>Current state:</strong> {{isActive ? 'Active' : 'Inactive'}}</p>
+            </div>
+            <style>
+                .highlight {
+                    background: #4caf50 !important;
+                    color: white;
+                }
+            </style>
+            <div class="info-box">
+                <strong>ng-class:</strong> Dynamically adds/removes CSS classes
+            </div>
+        </div>
+
+        <!-- Section 9: Filters -->
+        <div class="demo-section" ng-init="price=1234.56; text='angular js'">
+            <h2>9. AngularJS Filters</h2>
+            <div class="output-box">
+                <p><strong>Uppercase:</strong> {{text | uppercase}}</p>
+                <p><strong>Lowercase:</strong> {{'HELLO WORLD' | lowercase}}</p>
+                <p><strong>Currency:</strong> {{price | currency}}</p>
+                <p><strong>Number:</strong> {{price | number:2}}</p>
+                <p><strong>Date:</strong> {{1234567890000 | date:'dd/MM/yyyy'}}</p>
+            </div>
+            <div class="info-box">
+                <strong>Filters:</strong> Format data for display using pipe (|) symbol
+            </div>
+        </div>
+
+        <!-- Section 10: Multiple Inputs -->
+        <div class="demo-section">
+            <h2>10. Calculator Example</h2>
+            <input type="number" ng-model="num1" placeholder="First number" ng-init="num1=10">
+            <input type="number" ng-model="num2" placeholder="Second number" ng-init="num2=5">
+            <div class="output-box">
+                <p><strong>Addition:</strong> {{num1}} + {{num2}} = {{num1 + num2}}</p>
+                <p><strong>Subtraction:</strong> {{num1}} - {{num2}} = {{num1 - num2}}</p>
+                <p><strong>Multiplication:</strong> {{num1}} × {{num2}} = {{num1 * num2}}</p>
+                <p><strong>Division:</strong> {{num1}} ÷ {{num2}} = {{num1 / num2}}</p>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="demo-section">
+            <h2>📝 Key AngularJS Directives</h2>
+            <ul>
+                <li><strong>ng-app:</strong> Defines AngularJS application root</li>
+                <li><strong>ng-model:</strong> Binds input to application data</li>
+                <li><strong>ng-bind:</strong> Binds data to HTML elements</li>
+                <li><strong>ng-init:</strong> Initializes application data</li>
+                <li><strong>ng-repeat:</strong> Loops through arrays</li>
+                <li><strong>ng-show/ng-hide:</strong> Shows/hides elements</li>
+                <li><strong>ng-if:</strong> Conditionally adds/removes elements</li>
+                <li><strong>ng-click:</strong> Handles click events</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

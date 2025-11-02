@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="formApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Form Validation - Week 9</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="eventHandling.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 { color: #667eea; text-align: center; }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input.ng-invalid.ng-touched {
+            border-color: #e74c3c;
+        }
+        input.ng-valid.ng-touched {
+            border-color: #2ecc71;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body ng-controller="FormController">
+    <div class="container">
+        <h1>Student Registration Form</h1>
+        <p style="text-align: center; color: #666;">Week 9: AngularJS Form Validation</p>
+
+        <form name="studentForm" ng-submit="submitForm()" novalidate>
+            <!-- Name -->
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="name" ng-model="student.name" required ng-minlength="3">
+                <div class="error" ng-show="studentForm.name.$touched && studentForm.name.$error.required">
+                    Name is required
+                </div>
+                <div class="error" ng-show="studentForm.name.$touched && studentForm.name.$error.minlength">
+                    Name must be at least 3 characters
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" name="email" ng-model="student.email" required>
+                <div class="error" ng-show="studentForm.email.$touched && studentForm.email.$error.required">
+                    Email is required
+                </div>
+                <div class="error" ng-show="studentForm.email.$touched && studentForm.email.$error.email">
+                    Invalid email format
+                </div>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                <label>Age *</label>
+                <input type="number" name="age" ng-model="student.age" required min="18" max="100">
+                <div class="error" ng-show="studentForm.age.$touched && studentForm.age.$error.required">
+                    Age is required
+                </div>
+                <div class="error" ng-show="studentForm.age.$touched && (studentForm.age.$error.min || studentForm.age.$error.max)">
+                    Age must be between 18 and 100
+                </div>
+            </div>
+
+            <!-- Course -->
+            <div class="form-group">
+                <label>Course *</label>
+                <select name="course" ng-model="student.course" required>
+                    <option value="">-- Select Course --</option>
+                    <option value="HTML5">HTML5</option>
+                    <option value="CSS3">CSS3</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="React">React</option>
+                    <option value="Angular">Angular</option>
+                </select>
+                <div class="error" ng-show="studentForm.course.$touched && studentForm.course.$error.required">
+                    Please select a course
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" ng-disabled="studentForm.$invalid">
+                Submit Form
+            </button>
+
+            <!-- Form Status -->
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+                <p><strong>Form Valid:</strong> {{studentForm.$valid}}</p>
+                <p><strong>Form Invalid:</strong> {{studentForm.$invalid}}</p>
+                <p><strong>Form Pristine:</strong> {{studentForm.$pristine}}</p>
+                <p><strong>Form Dirty:</strong> {{studentForm.$dirty}}</p>
+            </div>
+        </form>
+
+        <!-- Success Message -->
+        <div class="success-message" ng-show="submitted">
+            <h3>✓ Form Submitted Successfully!</h3>
+            <p><strong>Name:</strong> {{student.name}}</p>
+            <p><strong>Email:</strong> {{student.email}}</p>
+            <p><strong>Age:</strong> {{student.age}}</p>
+            <p><strong>Course:</strong> {{student.course}}</p>
+        </div>
+    </div>
+</body>
+</html>

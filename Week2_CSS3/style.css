@@ -1,0 +1,403 @@
+/* ============================================
+   WEEK 2 - CSS3 STYLING DEMONSTRATION
+   File: style.css
+   Purpose: Demonstrate CSS3 properties including
+            colors, fonts, backgrounds, and borders
+   ============================================ */
+
+/* ========== COLOR PROPERTIES ========== */
+
+/* Named Colors */
+.color-named {
+    color: crimson;
+    background-color: lightblue;
+}
+
+/* Hexadecimal Colors */
+.color-hex {
+    color: #2c3e50;
+    background-color: #ecf0f1;
+}
+
+/* RGB Colors */
+.color-rgb {
+    color: rgb(231, 76, 60);
+    background-color: rgb(236, 240, 241);
+}
+
+/* RGBA Colors (with transparency) */
+.color-rgba {
+    color: rgba(52, 152, 219, 1);
+    background-color: rgba(52, 152, 219, 0.2);
+}
+
+/* HSL Colors */
+.color-hsl {
+    color: hsl(348, 83%, 47%);
+    background-color: hsl(204, 70%, 53%);
+}
+
+/* ========== FONT PROPERTIES ========== */
+
+/* Font Family */
+.font-family-serif {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+.font-family-sans {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-family-mono {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Font Size */
+.font-size-small {
+    font-size: 12px;
+}
+
+.font-size-medium {
+    font-size: 16px;
+}
+
+.font-size-large {
+    font-size: 24px;
+}
+
+.font-size-relative {
+    font-size: 1.5em; /* Relative to parent */
+}
+
+/* Font Weight */
+.font-weight-light {
+    font-weight: 300;
+}
+
+.font-weight-normal {
+    font-weight: 400;
+}
+
+.font-weight-bold {
+    font-weight: 700;
+}
+
+/* Font Style */
+.font-style-italic {
+    font-style: italic;
+}
+
+.font-style-oblique {
+    font-style: oblique;
+}
+
+/* Text Transform */
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+/* Text Decoration */
+.text-underline {
+    text-decoration: underline;
+}
+
+.text-line-through {
+    text-decoration: line-through;
+}
+
+.text-overline {
+    text-decoration: overline;
+}
+
+/* Text Alignment */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+/* Letter and Word Spacing */
+.letter-spacing {
+    letter-spacing: 3px;
+}
+
+.word-spacing {
+    word-spacing: 10px;
+}
+
+/* Line Height */
+.line-height {
+    line-height: 2;
+}
+
+/* ========== BACKGROUND PROPERTIES ========== */
+
+/* Solid Background Color */
+.bg-solid {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+}
+
+/* Background Image */
+.bg-image {
+    background-image: url('https://via.placeholder.com/800x400/667eea/ffffff?text=Background+Image');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Linear Gradient */
+.bg-gradient-linear {
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Radial Gradient */
+.bg-gradient-radial {
+    background: radial-gradient(circle, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Multiple Backgrounds */
+.bg-multiple {
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://via.placeholder.com/800x400');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== BORDER PROPERTIES ========== */
+
+/* Basic Border */
+.border-basic {
+    border: 2px solid #3498db;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* Border Styles */
+.border-dashed {
+    border: 3px dashed #e74c3c;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.border-dotted {
+    border: 3px dotted #2ecc71;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.border-double {
+    border: 5px double #9b59b6;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* Individual Border Sides */
+.border-individual {
+    border-top: 4px solid #e74c3c;
+    border-right: 4px dashed #3498db;
+    border-bottom: 4px dotted #2ecc71;
+    border-left: 4px double #f39c12;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* Border Radius (Rounded Corners) */
+.border-radius-small {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.border-radius-medium {
+    border: 2px solid #2ecc71;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.border-radius-large {
+    border: 2px solid #e74c3c;
+    border-radius: 30px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.border-radius-circle {
+    border: 3px solid #9b59b6;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px auto;
+}
+
+/* Individual Corner Radius */
+.border-radius-custom {
+    border: 2px solid #f39c12;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* ========== BOX SHADOW ========== */
+
+.box-shadow-basic {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.box-shadow-elevated {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.box-shadow-inset {
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+/* ========== TEXT SHADOW ========== */
+
+.text-shadow-basic {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.text-shadow-glow {
+    text-shadow: 0 0 10px #3498db, 0 0 20px #3498db;
+    font-size: 32px;
+    font-weight: bold;
+    color: #3498db;
+}
+
+/* ========== OPACITY & TRANSPARENCY ========== */
+
+.opacity-full {
+    opacity: 1;
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.opacity-half {
+    opacity: 0.5;
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.opacity-low {
+    opacity: 0.3;
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* ========== TRANSITIONS (CSS3 Animation) ========== */
+
+.transition-demo {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.transition-demo:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== DEMO CONTAINER ========== */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #3498db;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+
+.demo-box {
+    margin: 15px 0;
+    padding: 15px;
+}

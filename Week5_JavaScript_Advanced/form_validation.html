@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation - Week 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input.error {
+            border-color: #e74c3c;
+        }
+        input.success {
+            border-color: #2ecc71;
+        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Validation with JavaScript</h1>
+        
+        <form id="registrationForm" novalidate>
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username (min 3 characters)">
+                <div class="error-message" id="usernameError"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter valid email">
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Min 8 characters, 1 uppercase, 1 number">
+                <div class="error-message" id="passwordError"></div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password">
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="10 digits only">
+                <div class="error-message" id="phoneError"></div>
+            </div>
+
+            <!-- Age -->
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="Must be 18 or older">
+                <div class="error-message" id="ageError"></div>
+            </div>
+
+            <button type="submit">Submit Form</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            ✓ Form submitted successfully!
+        </div>
+    </div>
+
+    <script>
+        // Get form and input elements
+        const form = document.getElementById('registrationForm');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const phone = document.getElementById('phone');
+        const age = document.getElementById('age');
+
+        // Validation functions
+        function validateUsername() {
+            const value = username.value.trim();
+            const errorElement = document.getElementById('usernameError');
+            
+            if (value === '') {
+                showError(username, errorElement, 'Username is required');
+                return false;
+            } else if (value.length < 3) {
+                showError(username, errorElement, 'Username must be at least 3 characters');
+                return false;
+            } else {
+                showSuccess(username, errorElement);
+                return true;
+            }
+        }
+
+        function validateEmail() {
+            const value = email.value.trim();
+            const errorElement = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (value === '') {
+                showError(email, errorElement, 'Email is required');
+                return false;
+            } else if (!emailRegex.test(value)) {
+                showError(email, errorElement, 'Please enter a valid email');
+                return false;
+            } else {
+                showSuccess(email, errorElement);
+                return true;
+            }
+        }
+
+        function validatePassword() {
+            const value = password.value;
+            const errorElement = document.getElementById('passwordError');
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+            
+            if (value === '') {
+                showError(password, errorElement, 'Password is required');
+                return false;
+            } else if (!passwordRegex.test(value)) {
+                showError(password, errorElement, 'Password must be 8+ chars with 1 uppercase and 1 number');
+                return false;
+            } else {
+                showSuccess(password, errorElement);
+                return true;
+            }
+        }
+
+        function validateConfirmPassword() {
+            const value = confirmPassword.value;
+            const errorElement = document.getElementById('confirmPasswordError');
+            
+            if (value === '') {
+                showError(confirmPassword, errorElement, 'Please confirm your password');
+                return false;
+            } else if (value !== password.value) {
+                showError(confirmPassword, errorElement, 'Passwords do not match');
+                return false;
+            } else {
+                showSuccess(confirmPassword, errorElement);
+                return true;
+            }
+        }
+
+        function validatePhone() {
+            const value = phone.value.trim();
+            const errorElement = document.getElementById('phoneError');
+            const phoneRegex = /^\d{10}$/;
+            
+            if (value === '') {
+                showError(phone, errorElement, 'Phone number is required');
+                return false;
+            } else if (!phoneRegex.test(value)) {
+                showError(phone, errorElement, 'Phone must be exactly 10 digits');
+                return false;
+            } else {
+                showSuccess(phone, errorElement);
+                return true;
+            }
+        }
+
+        function validateAge() {
+            const value = age.value;
+            const errorElement = document.getElementById('ageError');
+            
+            if (value === '') {
+                showError(age, errorElement, 'Age is required');
+                return false;
+            } else if (value < 18) {
+                showError(age, errorElement, 'You must be at least 18 years old');
+                return false;
+            } else if (value > 120) {
+                showError(age, errorElement, 'Please enter a valid age');
+                return false;
+            } else {
+                showSuccess(age, errorElement);
+                return true;
+            }
+        }
+
+        // Helper functions
+        function showError(input, errorElement, message) {
+            input.classList.add('error');
+            input.classList.remove('success');
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+
+        function showSuccess(input, errorElement) {
+            input.classList.remove('error');
+            input.classList.add('success');
+            errorElement.classList.remove('show');
+        }
+
+        // Real-time validation
+        username.addEventListener('blur', validateUsername);
+        email.addEventListener('blur', validateEmail);
+        password.addEventListener('blur', validatePassword);
+        confirmPassword.addEventListener('blur', validateConfirmPassword);
+        phone.addEventListener('blur', validatePhone);
+        age.addEventListener('blur', validateAge);
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate all fields
+            const isUsernameValid = validateUsername();
+            const isEmailValid = validateEmail();
+            const isPasswordValid = validatePassword();
+            const isConfirmPasswordValid = validateConfirmPassword();
+            const isPhoneValid = validatePhone();
+            const isAgeValid = validateAge();
+            
+            // Check if all validations passed
+            if (isUsernameValid && isEmailValid && isPasswordValid && 
+                isConfirmPasswordValid && isPhoneValid && isAgeValid) {
+                
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Reset form
+                form.reset();
+                
+                // Remove success classes
+                document.querySelectorAll('input').forEach(input => {
+                    input.classList.remove('success');
+                });
+                
+                // Hide success message after 3 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

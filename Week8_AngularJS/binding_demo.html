@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Data Binding - Week 8</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 { color: #667eea; text-align: center; }
+        .demo-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .output-box {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AngularJS Data Binding Demo</h1>
+
+        <div class="demo-section">
+            <h2>1. Two-Way Data Binding</h2>
+            <input type="text" ng-model="name" placeholder="Enter your name">
+            <div class="output-box">
+                <p><strong>Hello, {{name || 'Guest'}}!</strong></p>
+            </div>
+        </div>
+
+        <div class="demo-section" ng-init="num1=10; num2=5">
+            <h2>2. One-Way Binding (Expressions)</h2>
+            <input type="number" ng-model="num1">
+            <input type="number" ng-model="num2">
+            <div class="output-box">
+                <p>{{num1}} + {{num2}} = {{num1 + num2}}</p>
+                <p>{{num1}} × {{num2}} = {{num1 * num2}}</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>3. Select Binding</h2>
+            <select ng-model="course">
+                <option value="">Choose course</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="JavaScript">JavaScript</option>
+            </select>
+            <div class="output-box">
+                <p>Selected: {{course || 'None'}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

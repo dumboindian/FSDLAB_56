@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions & Events - Week 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #667eea;
+            text-align: center;
+        }
+        .demo-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #output {
+            background: #ecf0f1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            min-height: 50px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Functions & Events</h1>
+
+        <!-- Function Demonstrations -->
+        <div class="demo-section">
+            <h2>1. Basic Functions</h2>
+            <button onclick="greet()">Greet</button>
+            <button onclick="showDate()">Show Date</button>
+            <button onclick="calculateSum()">Calculate Sum</button>
+            <div id="output"></div>
+        </div>
+
+        <!-- Button Click Events -->
+        <div class="demo-section">
+            <h2>2. Button Click Events</h2>
+            <button onclick="changeColor()">Change Background</button>
+            <button onclick="incrementCounter()">Increment Counter</button>
+            <button onclick="resetCounter()">Reset Counter</button>
+            <p>Counter: <span id="counter">0</span></p>
+        </div>
+
+        <!-- Input Events -->
+        <div class="demo-section">
+            <h2>3. Input Events</h2>
+            <label>Type something (onkeyup):</label>
+            <input type="text" id="textInput" onkeyup="displayText()" placeholder="Type here...">
+            <p>You typed: <strong id="displayOutput"></strong></p>
+
+            <label>Enter a number (onchange):</label>
+            <input type="number" id="numberInput" onchange="squareNumber()" placeholder="Enter number">
+            <p>Square: <strong id="squareOutput"></strong></p>
+        </div>
+
+        <!-- Mouse Events -->
+        <div class="demo-section">
+            <h2>4. Mouse Events</h2>
+            <button onmouseover="showMessage('Mouse Over!')" onmouseout="showMessage('Mouse Out!')">
+                Hover Over Me
+            </button>
+            <button ondblclick="showMessage('Double Clicked!')">Double Click Me</button>
+            <p id="mouseOutput"></p>
+        </div>
+
+        <!-- Form Events -->
+        <div class="demo-section">
+            <h2>5. Form Events</h2>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" id="username" placeholder="Enter username" required>
+                <button type="submit">Submit Form</button>
+            </form>
+            <p id="formOutput"></p>
+        </div>
+
+        <!-- Arrow Functions -->
+        <div class="demo-section">
+            <h2>6. Arrow Functions (ES6)</h2>
+            <button onclick="arrowFunctionDemo()">Test Arrow Function</button>
+            <button onclick="arrayMapDemo()">Array Map Demo</button>
+            <div id="arrowOutput"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========== BASIC FUNCTIONS ==========
+        
+        function greet() {
+            document.getElementById('output').innerHTML = "Hello from JavaScript Function!";
+        }
+
+        function showDate() {
+            const now = new Date();
+            document.getElementById('output').innerHTML = `Current Date: ${now.toLocaleDateString()}<br>Time: ${now.toLocaleTimeString()}`;
+        }
+
+        function calculateSum() {
+            const a = 15;
+            const b = 25;
+            const sum = a + b;
+            document.getElementById('output').innerHTML = `Sum of ${a} + ${b} = ${sum}`;
+        }
+
+        // ========== BUTTON CLICK EVENTS ==========
+        
+        let counter = 0;
+        const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6'];
+        let colorIndex = 0;
+
+        function changeColor() {
+            document.body.style.background = `linear-gradient(135deg, ${colors[colorIndex]}, ${colors[(colorIndex + 1) % colors.length]})`;
+            colorIndex = (colorIndex + 1) % colors.length;
+        }
+
+        function incrementCounter() {
+            counter++;
+            document.getElementById('counter').textContent = counter;
+        }
+
+        function resetCounter() {
+            counter = 0;
+            document.getElementById('counter').textContent = counter;
+        }
+
+        // ========== INPUT EVENTS ==========
+        
+        function displayText() {
+            const text = document.getElementById('textInput').value;
+            document.getElementById('displayOutput').textContent = text;
+        }
+
+        function squareNumber() {
+            const num = document.getElementById('numberInput').value;
+            const square = num * num;
+            document.getElementById('squareOutput').textContent = square;
+        }
+
+        // ========== MOUSE EVENTS ==========
+        
+        function showMessage(message) {
+            document.getElementById('mouseOutput').textContent = message;
+        }
+
+        // ========== FORM EVENTS ==========
+        
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent page reload
+            const username = document.getElementById('username').value;
+            document.getElementById('formOutput').innerHTML = `<strong>Form submitted!</strong> Welcome, ${username}!`;
+            document.getElementById('username').value = ''; // Clear input
+        }
+
+        // ========== ARROW FUNCTIONS ==========
+        
+        // Traditional function
+        function traditionalAdd(a, b) {
+            return a + b;
+        }
+
+        // Arrow function
+        const arrowAdd = (a, b) => a + b;
+
+        function arrowFunctionDemo() {
+            const result1 = traditionalAdd(5, 3);
+            const result2 = arrowAdd(5, 3);
+            document.getElementById('arrowOutput').innerHTML = 
+                `Traditional Function: ${result1}<br>Arrow Function: ${result2}`;
+        }
+
+        function arrayMapDemo() {
+            const numbers = [1, 2, 3, 4, 5];
+            const doubled = numbers.map(num => num * 2);
+            document.getElementById('arrowOutput').innerHTML = 
+                `Original: [${numbers}]<br>Doubled: [${doubled}]`;
+        }
+
+        // ========== FUNCTION WITH PARAMETERS ==========
+        
+        function add(a, b) {
+            return a + b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        // Function with default parameters
+        function greetUser(name = "Guest") {
+            return `Hello, ${name}!`;
+        }
+
+        console.log("Add:", add(5, 3));
+        console.log("Multiply:", multiply(4, 7));
+        console.log("Greet:", greetUser());
+        console.log("Greet with name:", greetUser("Alice"));
+    </script>
+</body>
+</html>

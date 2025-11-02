@@ -1,0 +1,24 @@
+{
+  "name": "fsdlab-week10-nodejs",
+  "version": "1.0.0",
+  "description": "Full Stack Development Lab - Week 10 Node.js Practicals",
+  "main": "server.js",
+  "scripts": {
+    "start": "node Week10_NodeJS/server.js",
+    "callback": "node Week10_NodeJS/callback_demo.js",
+    "mongo": "node Week10_NodeJS/mongo_mock.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "fsdl",
+    "backend",
+    "rest-api"
+  ],
+  "author": "FSDL Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

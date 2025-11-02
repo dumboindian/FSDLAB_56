@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 - HTML5 Essentials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #2c3e50; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        img {
+            max-width: 300px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to HTML5 Essentials</h1>
+        <p>This page demonstrates various HTML5 elements and structure.</p>
+    </header>
+
+    <!-- Navigation Links -->
+    <nav>
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="forms.html">Go to Forms Page</a></li>
+            <li><a href="media.html">Go to Media Page</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Text Formatting Section -->
+        <section id="about">
+            <h2>About HTML5</h2>
+            <p>HTML5 is the latest version of <strong>Hypertext Markup Language</strong>.</p>
+            <p>It includes new semantic elements like <em>&lt;header&gt;</em>, <em>&lt;footer&gt;</em>, and <em>&lt;article&gt;</em>.</p>
+            <p><mark>Highlighted text</mark> and <del>deleted text</del> are also supported.</p>
+            <p>Mathematical expressions: H<sub>2</sub>O and E = mc<sup>2</sup></p>
+        </section>
+
+        <!-- Lists Section -->
+        <section id="features">
+            <h2>HTML5 Features</h2>
+            
+            <h3>Ordered List</h3>
+            <ol>
+                <li>Semantic Elements</li>
+                <li>Multimedia Support</li>
+                <li>Canvas and SVG</li>
+                <li>Geolocation API</li>
+            </ol>
+
+            <h3>Unordered List</h3>
+            <ul>
+                <li>Better accessibility</li>
+                <li>Improved forms</li>
+                <li>Local storage</li>
+                <li>Offline capabilities</li>
+            </ul>
+
+            <h3>Description List</h3>
+            <dl>
+                <dt>HTML</dt>
+                <dd>HyperText Markup Language</dd>
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheets</dd>
+                <dt>JS</dt>
+                <dd>JavaScript</dd>
+            </dl>
+        </section>
+
+        <!-- Table Section -->
+        <section>
+            <h2>Student Records Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>John Doe</td>
+                        <td>Full Stack Development</td>
+                        <td>85</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>Jane Smith</td>
+                        <td>Web Design</td>
+                        <td>92</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>Mike Johnson</td>
+                        <td>JavaScript</td>
+                        <td>78</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Image Section -->
+        <section>
+            <h2>Image Example</h2>
+            <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=HTML5+Logo" 
+                 alt="HTML5 Placeholder Logo" 
+                 title="HTML5 Logo">
+            <p><small>Image source: Placeholder service</small></p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Information</h2>
+            <address>
+                <strong>Full Stack Development Lab</strong><br>
+                Email: <a href="mailto:fsdlab@example.com">fsdlab@example.com</a><br>
+                Phone: <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </address>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <hr>
+        <p>&copy; 2024 FSDL Week 1. All rights reserved.</p>
+        <p><small>Created for educational purposes</small></p>
+    </footer>
+</body>
+</html>

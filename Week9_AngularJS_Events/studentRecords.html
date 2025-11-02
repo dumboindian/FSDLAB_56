@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records - Week 9</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('studentApp', []);
+        app.controller('StudentRecordsController', function($scope) {
+            $scope.students = [
+                { id: 1, name: 'Alice Johnson', course: 'React', marks: 85 },
+                { id: 2, name: 'Bob Smith', course: 'Angular', marks: 78 },
+                { id: 3, name: 'Charlie Brown', course: 'Node.js', marks: 92 }
+            ];
+            
+            $scope.searchText = '';
+            $scope.sortColumn = 'name';
+            $scope.sortReverse = false;
+            
+            $scope.deleteStudent = function(id) {
+                $scope.students = $scope.students.filter(function(s) {
+                    return s.id !== id;
+                });
+            };
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 { color: #667eea; text-align: center; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body ng-controller="StudentRecordsController">
+    <div class="container">
+        <h1>Student Records</h1>
+        
+        <input type="text" ng-model="searchText" placeholder="Search students...">
+        
+        <table>
+            <thead>
+                <tr>
+                    <th ng-click="sortColumn='id'; sortReverse=!sortReverse">ID</th>
+                    <th ng-click="sortColumn='name'; sortReverse=!sortReverse">Name</th>
+                    <th ng-click="sortColumn='course'; sortReverse=!sortReverse">Course</th>
+                    <th ng-click="sortColumn='marks'; sortReverse=!sortReverse">Marks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students | filter:searchText | orderBy:sortColumn:sortReverse">
+                    <td>{{student.id}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.course}}</td>
+                    <td>{{student.marks}}</td>
+                    <td>
+                        <button ng-click="deleteStudent(student.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p style="margin-top: 20px;">
+            <strong>Total Students:</strong> {{(students | filter:searchText).length}}
+        </p>
+    </div>
+</body>
+</html>
